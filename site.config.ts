@@ -2,22 +2,21 @@ import { siteConfig } from './lib/site-config'
 
 export default siteConfig({
   // the site's root Notion page (required)
-  rootNotionPageId: '9a6b0c9a6f654c91ae06f1782f25f891',
+  rootNotionPageId: 'Blog-351abd6d2fa847608085f6e40a7a46cd',
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
   rootNotionSpaceId: null,
-
   // basic site info (required)
   name: '博客空间',
-  domain: 'https://www.notion.so/9a6b0c9a6f654c91ae06f1782f25f891',
-  author: 'Travis Fischer',
+  domain: 'https://www.notion.so/Blog-351abd6d2fa847608085f6e40a7a46cd?pvs=4',
+  author: 'over58',
 
   // open graph metadata (optional)
   description: 'Notion构建的博客空间测试',
 
   // social usernames (optional)
   twitter: '',
-  github: '',
+  github: 'over58',
   linkedin: '',
   // mastodon: '#', // optional mastodon profile URL, provides link verification
   // newsletter: '#', // optional newsletter URL
