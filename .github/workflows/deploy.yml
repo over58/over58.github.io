@@ -1,23 +1,26 @@
 name: Build and Deploy
-on: 
+on:
   push:
     branches: main
-  
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
-        with:
-          persist-credentials: false
+      - uses: actions/checkout@v3
 
-      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
-        run: |
-          yarn install
-          yarn run build
-        env:
-          CI: false
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: yarn
+
+      - run: yarn install --frozen-lockfile
+      - name: build
+        #        TODO Enable those lines below if you use a Redis cache, you'll also need to configure GitHub Repository Secrets
+        #        env:
+        #          REDIS_HOST: ${{ secrets.REDIS_HOST }}
+        #          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+        run: yarn build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
