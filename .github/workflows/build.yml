@@ -20,3 +20,14 @@ jobs:
         #          REDIS_HOST: ${{ secrets.REDIS_HOST }}
         #          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
         run: yarn build
+
+  Deploy:
+    needs: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: my_blog # The branch the action should deploy to.
+          FOLDER: public # The folder the action should deploy.
