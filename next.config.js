@@ -4,8 +4,25 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 module.exports = withBundleAnalyzer({
+  exportPathMap: async function (
+    defaultPathMap,
+    { dev, dir, outDir, distDir, buildId }
+  ) {
+    console.log('===', defaultPathMap, {
+      dev,
+      dir,
+      outDir,
+      distDir,
+      buildId
+    })
+    return {
+      '/': { page: '/' },
+      '/404': { page: '/404' },
+    }
+  },
   staticPageGenerationTimeout: 300,
   images: {
+    unoptimized: true,
     domains: [
       'www.notion.so',
       'notion.so',
