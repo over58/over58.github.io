@@ -8,7 +8,8 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
 
       - uses: actions/setup-node@v3
         with:
@@ -16,20 +17,13 @@ jobs:
           cache: yarn
 
       - run: yarn install --frozen-lockfile
-      - name: build
+      - name: Build an Export
         #        TODO Enable those lines below if you use a Redis cache, you'll also need to configure GitHub Repository Secrets
         #        env:
         #          REDIS_HOST: ${{ secrets.REDIS_HOST }}
         #          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
         run: yarn export
-
-  Deploy:
-    needs: Build
-    runs-on: ubuntu-latest
-    steps:
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # BRANCH: my_blog # The branch the action should deploy to.
-          FOLDER: out # The folder the action should deploy.
+          folder: out # The folder the action should deploy.
