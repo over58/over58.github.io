@@ -3,7 +3,8 @@ name: Build
 on:
   push:
     branches: main
-
+permissions:
+  contents: [read, write]
 jobs:
   Build:
     runs-on: ubuntu-latest
@@ -17,7 +18,7 @@ jobs:
           cache: yarn
 
       - run: yarn install --frozen-lockfile
-      - name: Build an Export
+      - name: Build and Export
         #        TODO Enable those lines below if you use a Redis cache, you'll also need to configure GitHub Repository Secrets
         #        env:
         #          REDIS_HOST: ${{ secrets.REDIS_HOST }}
