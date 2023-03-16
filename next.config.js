@@ -18,6 +18,7 @@ module.exports = withBundleAnalyzer({
     return {
       '/': { page: '/' },
       '/404': { page: '/404' },
+      '/_next': { page: '/_next' },
     }
   },
   staticPageGenerationTimeout: 300,
